@@ -19,7 +19,7 @@
 # appveyor file
 # http://www.appveyor.com/docs/appveyor-yml
 
-image: Visual Studio 2017
+image: Previous Visual Studio 2017
 environment:
   matrix:
     - nodejs_version: "4"
@@ -35,4 +35,4 @@ test_script:
   - node --version
   - npm --version
   - msbuild /version
-  - appveyor-retry npm test
+  - npm test
