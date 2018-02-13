@@ -28,15 +28,15 @@ environment:
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm install
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 build: off
 
 test_script:
   - node --version
   - npm --version
-  - msbuild /version
-  - dir /s build\windows\bld\PackageUploadLayout & exit 0
-  - npm test
+  - msbuild /version  
+  - appveyor-retry npm test
 
 on_finish:
-  - dir /s build\windows\bld\PackageUploadLayout
+    - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
