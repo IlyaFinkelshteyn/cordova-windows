@@ -35,4 +35,4 @@ test_script:
   - node --version
   - npm --version
   - msbuild /version
-  - npm test
+  - appveyor-retry npm test
