@@ -36,6 +36,9 @@ test_script:
   - node --version
   - npm --version
   - msbuild /version  
+  - ps: sleep 5
+  - ps: restart-computer -f
+  - ps: sleep 5
   - npm test
 
 on_finish:
